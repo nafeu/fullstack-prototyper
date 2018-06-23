@@ -20,7 +20,7 @@ angular.module('myApp.logout', ['ngRoute'])
 
   console.log("LogoutController reporting for duty");
 
-  $scope.isLoggedIn = authService.isLoggedIn();
+  $scope.user = authService.getUserInfo();
 
   $scope.logout = function() {
     authService.logout();

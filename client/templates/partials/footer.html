@@ -1,1 +1,2 @@
-<p id="site-footer" class="mt-4"><strong>Made with &#9829; by <a href="http://nafeu.com">Nafeu Nasir</a></strong></p>
+<p ng-hide="user" id="site-footer" class="mt-4"><strong>&copy; 2018 Fullstack Prototyper</strong> | <a href="#!/login">Login</a> | <a href="#!/register">Create an Account</a></p>
+<p ng-show="user" id="site-footer" class="mt-4"><strong>&copy; 2018 Fullstack Prototyper</strong> | Logged in as {{user.email}} | <a href="#!/logout">Logout</a></p>

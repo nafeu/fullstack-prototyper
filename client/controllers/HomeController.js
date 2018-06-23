@@ -20,6 +20,6 @@ angular.module('myApp.home', ['ngRoute'])
 
   console.log("HomeController reporting for duty.");
 
-  $scope.isLoggedIn = authService.isLoggedIn();
+  $scope.user = authService.getUserInfo();
 
 }]);

@@ -22,7 +22,7 @@ angular.module('myApp.login', ['ngRoute'])
 
   console.log("LoginController reporting for duty");
 
-  $scope.isLoggedIn = authService.isLoggedIn();
+  $scope.user = authService.getUserInfo();
 
   $scope.email = "";
   $scope.password = "";

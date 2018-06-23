@@ -4,6 +4,6 @@ angular.module('myApp.about', ['ngRoute'])
 
 .controller('AboutController', ['$scope', 'authService', function($scope, authService) {
 
-  $scope.isLoggedIn = authService.isLoggedIn();
+  $scope.user = authService.getUserInfo();
 
 }]);

@@ -20,6 +20,6 @@ angular.module('myApp.dashboard', ['ngRoute'])
 
   console.log("DashboardController reporting for duty.");
 
-  $scope.isLoggedIn = authService.isLoggedIn();
+  $scope.user = authService.getUserInfo();
 
 }]);
