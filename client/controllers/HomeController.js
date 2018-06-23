@@ -2,14 +2,7 @@
 
 angular.module('myApp.home', ['ngRoute'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/home', {
-    templateUrl: 'views/home/home.html',
-    controller: 'HomeCtrl'
-  });
-}])
-
-.controller('HomeCtrl', ['$scope', '$cookies', 'apiService', 'storageService', function($scope, $cookies, apiService, storageService) {
+.controller('HomeController', ['$scope', '$cookies', 'apiService', 'storageService', function($scope, $cookies, apiService, storageService) {
 
   $scope.email = "";
   $scope.password = "";
@@ -32,6 +25,7 @@ angular.module('myApp.home', ['ngRoute'])
   $scope.verify = function(token) {
     apiService.verify(token).then(function(res){
       console.log("VERIFYING: ", $cookies.get('auth'));
+      console.log(res.data);
       $cookies.remove('auth');
       console.log("REMOVED");
     })

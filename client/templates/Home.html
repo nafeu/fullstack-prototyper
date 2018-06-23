@@ -4,11 +4,9 @@
 <br>
 <input ng-model="password" placeholder="password" type="text">
 <br>
-<input ng-model="token" placeholder="token" type="text">
+<input ng-model="token" placeholder="token" type="text" ng-enter="verify(token)">
 <br>
 
 <button ng-click="register(email, password)">Register</button>
 <br>
 <button ng-click="authenticate(email, password)">Authenticate</button>
-<br>
-<button ng-click="verify(token)">Verify</button>
