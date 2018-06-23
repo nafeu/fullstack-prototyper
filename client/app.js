@@ -6,6 +6,7 @@ var app = angular.module('myApp', [
   'ngCookies',
   'myApp.about',
   'myApp.home',
+  'ui.bootstrap',
 ]);
 
 app.constant('STORAGE_ID', 'fsproto');

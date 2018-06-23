@@ -2,7 +2,20 @@
 
 angular.module('myApp.home', ['ngRoute'])
 
-.controller('HomeController', ['$scope', '$cookies', 'apiService', 'storageService', function($scope, $cookies, apiService, storageService) {
+.controller('HomeController', ['$scope',
+                               '$window',
+                               '$cookies',
+                               '$timeout',
+                               'apiService',
+                               'modalService',
+                               'storageService',
+                               function($scope,
+                                        $window,
+                                        $cookies,
+                                        $timeout,
+                                        apiService,
+                                        modalService,
+                                        storageService) {
 
   $scope.email = "";
   $scope.password = "";
@@ -24,11 +37,14 @@ angular.module('myApp.home', ['ngRoute'])
 
   $scope.verify = function(token) {
     apiService.verify(token).then(function(res){
-      console.log("VERIFYING: ", $cookies.get('auth'));
-      console.log(res.data);
       $cookies.remove('auth');
-      console.log("REMOVED");
+      modalService.alert("Verifying", JSON.stringify(res.data));
     })
   }
 
+  $scope.modalTest = function() {
+    modalService.confirm("Confirmation test", "some text...").then(function(result){
+      console.log("do stuff when confirmed...");
+    });
+  }
 }]);
