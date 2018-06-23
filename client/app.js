@@ -5,7 +5,11 @@ var app = angular.module('myApp', [
   'ngRoute',
   'ngCookies',
   'myApp.about',
+  'myApp.login',
+  'myApp.logout',
+  'myApp.register',
   'myApp.home',
+  'myApp.dashboard',
   'ui.bootstrap',
 ]);
 

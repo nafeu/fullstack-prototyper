@@ -1,0 +1,8 @@
+<div id="navigation-bar">
+  <a href="#!/">home</a>
+  <a ng-show="isLoggedIn" href="#!/dashboard">dashboard</a>
+  <a href="#!/about">about</a>
+  <a ng-hide="isLoggedIn" href="#!/login">login</a>
+  <a ng-show="isLoggedIn" href="#!/logout">logout</a>
+  <a ng-hide="isLoggedIn" href="#!/register">register</a>
+</div>

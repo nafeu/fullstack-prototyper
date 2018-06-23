@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('myApp.home', ['ngRoute'])
+angular.module('myApp.dashboard', ['ngRoute'])
 
-.controller('HomeController', ['$scope',
+.controller('DashboardController', ['$scope',
                                '$window',
                                '$timeout',
                                'apiService',
@@ -18,7 +18,7 @@ angular.module('myApp.home', ['ngRoute'])
                                         storageService)
 {
 
-  console.log("HomeController reporting for duty.");
+  console.log("DashboardController reporting for duty.");
 
   $scope.isLoggedIn = authService.isLoggedIn();
 

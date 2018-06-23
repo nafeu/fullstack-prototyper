@@ -6,7 +6,7 @@ app.service('modalService', ['$uibModal', function($uibModal) {
         backdrop: true,
         keyboard: true,
         modalFade: true,
-        templateUrl: 'templates/modal.html'
+        templateUrl: 'templates/partials/modal.html'
     };
 
     var modalOptions = {
@@ -51,7 +51,7 @@ app.service('modalService', ['$uibModal', function($uibModal) {
     this.alert = function(header, body) {
       this.showModal(
         {
-          templateUrl: 'templates/alert.html'
+          templateUrl: 'templates/partials/alert.html'
         },
         {
           headerText: header,
