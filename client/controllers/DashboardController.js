@@ -36,24 +36,6 @@ angular.module('myApp.dashboard', ['ngRoute'])
     }
   ]
 
-  $scope.resourceItems = [
-    {
-      name: "Resource A",
-      link: "#!/",
-      id: 0,
-    },
-    {
-      name: "Resource B",
-      link: "#!/",
-      id: 1,
-    },
-    {
-      name: "Resource C",
-      link: "#!/",
-      id: 2,
-    },
-  ];
-
   $scope.user = authService.getLoggedInUser();
   apiService.getUserInfo($scope.user.token).then(function(res){
     console.log(res.data);
