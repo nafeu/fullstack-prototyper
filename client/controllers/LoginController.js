@@ -4,7 +4,6 @@ angular.module('myApp.login', ['ngRoute'])
 
 .controller('LoginController', ['$scope',
                                 '$window',
-                                '$timeout',
                                 '$location',
                                 'apiService',
                                 'authService',
@@ -12,7 +11,6 @@ angular.module('myApp.login', ['ngRoute'])
                                 'storageService',
                                 function($scope,
                                          $window,
-                                         $timeout,
                                          $location,
                                          apiService,
                                          authService,
@@ -22,18 +20,25 @@ angular.module('myApp.login', ['ngRoute'])
 
   console.log("LoginController reporting for duty");
 
-  $scope.user = authService.getUserInfo();
+  $scope.credentials = {
+    email: "",
+    password: ""
+  };
 
-  $scope.email = "";
-  $scope.password = "";
-  $scope.error = "";
+  $scope.apiError = "";
 
   $scope.login = function() {
-    authService.login($scope.email, $scope.password, function(res){
-      $location.path("/dashboard");
-    }, function(error){
-      $scope.error = error;
-    });
+    if ($scope.loginForm.$valid) {
+      authService.login($scope.credentials.email, $scope.credentials.password, function(res){
+        $location.path("/dashboard").search({});
+      }, function(error){
+        $scope.apiError = error;
+      });
+    }
+  }
+
+  $scope.goBack = function() {
+    $window.history.back();
   }
 
 }]);

@@ -1,6 +1,6 @@
 'use strict';
 
-app.service('authService', ['$cookies', '$location', 'apiService', function($cookies, $location, apiService) {
+app.service('authService', ['$cookies', 'apiService', function($cookies, apiService) {
 
   this.isAuth = function() {
     return new Promise(function(resolve, reject) {
@@ -35,9 +35,9 @@ app.service('authService', ['$cookies', '$location', 'apiService', function($coo
     })
   }
 
-  this.logout = function() {
+  this.logout = function(resolve) {
     $cookies.remove('auth');
-    $location.path('/');
+    resolve();
   }
 
   this.isLoggedIn = function() {

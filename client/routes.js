@@ -3,15 +3,16 @@
 app.run(['$rootScope', '$location', 'authService', function ($rootScope, $location, authService) {
   $rootScope.$on('$routeChangeStart', function (event) {
     var isLoggedIn = authService.isLoggedIn();
-    console.log("Route change -> " + $location.path() + " --- Auth: " + isLoggedIn);
+    var currPath = $location.path();
+    console.log("Route change -> " + currPath + " --- Auth: " + isLoggedIn);
     if (!isLoggedIn
-        && $location.path() != '/login'
-        && $location.path() != '/register'
-        && $location.path() != '/about'
-        && $location.path() != '/') {
-      $location.path('/login');
-    } else if (isLoggedIn && ($location.path() == '/login' || $location.path() == '/register')) {
-      $location.path('/logout');
+        && currPath != '/login'
+        && currPath != '/register'
+        && currPath != '/about'
+        && currPath != '/') {
+      $location.path('/login').replace().search({redirect: currPath.substring(1)});
+    } else if (isLoggedIn && (currPath == '/login' || currPath == '/register')) {
+      $location.path('/logout').replace().search({redirect: currPath.substring(1)});
     }
   });
 }]);

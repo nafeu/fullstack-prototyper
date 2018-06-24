@@ -31,7 +31,7 @@ api.post('/register', (req, res) => {
     User.find({email: req.body.email}, function(err, docs){
       if (docs.length) {
         res.json({
-          error: "User already exists"
+          error: "Email address is already in use."
         })
       } else {
         const newUser = User({
@@ -59,7 +59,7 @@ api.post('/authenticate', (req, res) => {
   User.findOne({email: req.body.email}, function(err, result){
     if (err) {
       res.json({
-        error: "Database error"
+        error: "Database error."
       });
     } else {
       if (result) {
@@ -71,13 +71,13 @@ api.post('/authenticate', (req, res) => {
             });
           } else {
             res.json({
-              error: "Invalid password"
+              error: "Invalid password."
             });
           }
         })
       } else {
         res.json({
-          error: "Account does not exist"
+          error: "Account does not exist."
         });
       }
     }
@@ -88,7 +88,7 @@ api.post('/verify', (req, res) => {
   jwt.verify(req.body.token, SECRET, function(err, decoded) {
     if (err) {
       res.json({
-        error: "Invalid token"
+        error: "Invalid token."
       });
     } else {
       User.findById(decoded.id, function(err, user){
