@@ -4,14 +4,39 @@ const mongoose = require('mongoose');
 const mongodb = require('mongodb');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const DB_URI = require('../config').DB_URI;
-const SECRET = require('../config').SECRET;
+const DB_URI = require('../config').DB_URI || process.env.DB_URI;
+const SECRET = require('../config').SECRET || process.env.SECRET;
+const ADMIN_SEED = require('../config').ADMIN_SEED || process.env.ADMIN_SEED;
 
 const User = require('../models/user');
 
 mongoose.connect(DB_URI);
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+// Seed Administrator Account
+const adminCredentials = ADMIN_SEED.split("/");
+User.find({email: adminCredentials[0]}, function(err, docs) {
+  if (docs.length) {
+    // Administrator account is active
+  } else {
+    console.log('[ api.js - Seeding administrator account ]');
+    bcrypt.hash(adminCredentials[1], 10, function(err, hash){
+      const newAdmin = User({
+        email: adminCredentials[0],
+        hash: hash,
+        role: 'admin'
+      });
+      newAdmin.save(function(err){
+        if (err) {
+          console.log(`[ api.js - ${err} ]`);
+        } else {
+          console.log('[ api.js - Administrator account created successfully ]');
+        }
+      })
+    })
+  }
+})
 
 api.use((req, res, next) => {
   const time = new Date().toTimeString();
@@ -69,12 +94,18 @@ api.post('/authenticate', (req, res) => {
       });
     } else {
       if (result) {
-        bcrypt.compare(req.body.password, result.hash, function(err, response){
-          if (response) {
-            res.json({
-              email: result.email,
-              token: jwt.sign({ id: result._id }, SECRET)
-            });
+        bcrypt.compare(req.body.password, result.hash, function(err, matched){
+          if (matched) {
+            if (!result.active) {
+              res.json({
+                error: "Account has been deactivated."
+              });
+            } else {
+              res.json({
+                email: result.email,
+                token: jwt.sign({ id: result._id }, SECRET)
+              });
+            }
           } else {
             res.json({
               error: "Invalid password."
@@ -102,6 +133,10 @@ api.post('/verify', (req, res) => {
           res.json({
             error: "Invalid token, no user."
           });
+        } else if (!user.active) {
+          res.json({
+            error: "Account has been deactivated."
+          })
         } else {
           res.json({
             authorized: true
