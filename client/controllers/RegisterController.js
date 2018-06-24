@@ -18,18 +18,22 @@ angular.module('myApp.register', ['ngRoute'])
 
   $scope.credentials = {
     email: "",
-    password: ""
+    password: "",
+    confirmPassword: "",
   };
 
-  $scope.apiError = "";
+  $scope.errorAlert = "";
 
   $scope.register = function() {
-    if ($scope.registrationForm.$valid) {
+    if ($scope.registrationForm.$valid
+        && $scope.credentials.confirmPassword === $scope.credentials.password
+        && $scope.credentials.password.length >= 8)
+    {
       authService.register($scope.credentials.email, $scope.credentials.password, function(res){
         modalService.alert("New Account Created", "New account successfully registered for " + $scope.credentials.email);
         $location.path("/dashboard").search({});
       }, function(error){
-        $scope.apiError = error;
+        $scope.errorAlert = error;
       });
     }
   }

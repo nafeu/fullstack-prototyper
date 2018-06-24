@@ -27,32 +27,38 @@ api.get('/test', (req, res) => {
 })
 
 api.post('/register', (req, res) => {
-  bcrypt.hash(req.body.password, 10, function(err, hash) {
-    User.find({email: req.body.email}, function(err, docs){
-      if (docs.length) {
-        res.json({
-          error: "Email address is already in use."
-        })
-      } else {
-        const newUser = User({
-          email: req.body.email,
-          hash: hash
-        })
-        newUser.save(function(err){
-          if (err) {
-            res.json({
-              error: err
-            })
-          } else {
-            res.json({
-              email: newUser.email,
-              token: jwt.sign({ id: newUser._id }, SECRET)
-            });
-          }
-        })
-      }
+  if (req.body.password.length < 8) {
+    res.json({
+      error: "Password too short (minimum 8 characters)."
     })
-  });
+  } else {
+    bcrypt.hash(req.body.password, 10, function(err, hash) {
+      User.find({email: req.body.email}, function(err, docs){
+        if (docs.length) {
+          res.json({
+            error: "Email address is already in use."
+          })
+        } else {
+          const newUser = User({
+            email: req.body.email,
+            hash: hash
+          })
+          newUser.save(function(err){
+            if (err) {
+              res.json({
+                error: err
+              })
+            } else {
+              res.json({
+                email: newUser.email,
+                token: jwt.sign({ id: newUser._id }, SECRET)
+              });
+            }
+          })
+        }
+      })
+    });
+  }
 })
 
 api.post('/authenticate', (req, res) => {
