@@ -12,5 +12,3 @@ var app = angular.module('myApp', [
   'myApp.dashboard',
   'ui.bootstrap',
 ]);
-
-app.constant('STORAGE_ID', 'fsproto');

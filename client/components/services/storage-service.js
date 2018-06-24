@@ -1,6 +1,6 @@
 'use strict';
 
-app.service('storageService', ['STORAGE_ID', function(storageId) {
+app.service('storageService', ['APP_STORAGE_ID', function(storageId) {
   var storageKey = storageId + '-appData';
   this.get = function(key) {
     if (window.localStorage.getItem(storageKey)) {

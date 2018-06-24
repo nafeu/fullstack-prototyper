@@ -20,6 +20,48 @@ angular.module('myApp.dashboard', ['ngRoute'])
 
   console.log("DashboardController reporting for duty.");
 
+  $scope.sectionMeta = [
+    {
+      id: 0,
+      title: "Section A",
+    },
+    {
+      id: 1,
+      title: "Section B",
+    },
+    {
+      id: 2,
+      title: "Section C",
+    }
+  ]
+
+  $scope.resourceItems = [
+    {
+      name: "Resource A",
+      link: "#!/",
+      id: 0,
+    },
+    {
+      name: "Resource B",
+      link: "#!/",
+      id: 1,
+    },
+    {
+      name: "Resource C",
+      link: "#!/",
+      id: 2,
+    },
+  ];
+
   $scope.user = authService.getUserInfo();
+
+  $scope.currentSection = 0;
+  $scope.currentTitle = $scope.sectionMeta[$scope.currentSection].title;
+
+  $scope.selectSection = function(id) {
+    $scope.currentSection = id;
+    $scope.currentTitle = $scope.sectionMeta[$scope.currentSection].title;
+  }
+
 
 }]);
