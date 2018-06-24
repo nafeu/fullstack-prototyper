@@ -1,8 +1,10 @@
-<div id="navigation-bar">
-  <a href="#!/">home</a>
-  <a ng-show="user" href="#!/dashboard">dashboard</a>
-  <a href="#!/about">about</a>
-  <a ng-hide="user" href="#!/login">login</a>
-  <a ng-show="user" href="#!/logout">logout</a>
-  <a ng-hide="user" href="#!/register">register</a>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+  <h5 class="my-0 mr-md-auto font-weight-normal"><a href="#!/">Fullstack Prototyper</a></h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a ng-hide="user" class="p-2 text-dark" href="#!/about">FAQ</a>
+    <a ng-show="user" class="p-2 text-dark" href="#!/dashboard">Dashboard</a>
+    <a class="p-2 text-dark" href="#!/about">About Us</a>
+  </nav>
+  <a ng-show="user" class="btn btn-outline-primary" href="#!/logout">Sign Out</a>
+  <a ng-hide="user" class="btn btn-outline-primary" href="#!/login">Sign In</a>
 </div>

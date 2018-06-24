@@ -94,10 +94,6 @@ body {
   font-family: 'Helvetica', Arial, sans-serif;
 }
 
-#main-view {
-  padding-top: 50px;
-}
-
 .fade.in {
     opacity: 1;
 }
