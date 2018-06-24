@@ -18,7 +18,7 @@ angular.module('myApp.logout', ['ngRoute'])
 
   console.log("LogoutController reporting for duty");
 
-  $scope.user = authService.getUserInfo();
+  $scope.user = authService.getLoggedInUser();
 
   var redirect = $routeParams.redirect;
 

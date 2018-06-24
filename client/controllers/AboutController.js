@@ -4,6 +4,6 @@ angular.module('myApp.about', ['ngRoute'])
 
 .controller('AboutController', ['$scope', 'authService', function($scope, authService) {
 
-  $scope.user = authService.getUserInfo();
+  $scope.user = authService.getLoggedInUser();
 
 }]);

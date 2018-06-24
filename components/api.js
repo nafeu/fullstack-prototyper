@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const mongodb = require('mongodb');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const _ = require('lodash');
 const DB_URI = require('../config').DB_URI || process.env.DB_URI;
 const SECRET = require('../config').SECRET || process.env.SECRET;
 const ADMIN_SEED = require('../config').ADMIN_SEED || process.env.ADMIN_SEED;
@@ -146,5 +147,39 @@ api.post('/verify', (req, res) => {
     }
   });
 })
+
+api.post('/user/getInfo', (req, res) => {
+  isAuth(req.body.token, ['admin', 'roleA', 'roleB', 'roleC']).then(function(user){
+    res.json({
+      user: _.omit(user.toObject(), ['hash'])
+    });
+  }, function(err){
+    res.json({
+      error: err
+    })
+  });
+})
+
+function isAuth(token, roles) {
+  return new Promise(function(resolve, reject){
+    jwt.verify(token, SECRET, function(err, decoded) {
+      if (err) {
+        reject(err);
+      } else {
+        User.findById(decoded.id, function(err, user){
+          if (err) {
+            reject(err);
+          } else if (!user.active) {
+            reject("Account has been deactivated.");
+          } else if (!roles.includes(user.role)) {
+            reject("Unauthorized request.")
+          } else {
+            resolve(user);
+          }
+        });
+      }
+    });
+  })
+}
 
 module.exports = api;

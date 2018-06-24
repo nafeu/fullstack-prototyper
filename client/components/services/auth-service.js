@@ -50,7 +50,7 @@ app.service('authService', ['$cookies', 'apiService', function($cookies, apiServ
     return false;
   }
 
-  this.getUserInfo = function() {
+  this.getLoggedInUser = function() {
     var userObject = $cookies.getObject('auth');
     if (userObject) {
       return userObject;

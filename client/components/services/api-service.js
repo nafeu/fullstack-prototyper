@@ -20,4 +20,10 @@ app.service('apiService', function($http) {
       token: token
     })
   }
+
+  this.getUserInfo = function(token) {
+    return $http.post("api/user/getInfo", {
+      token: token
+    })
+  }
 });

@@ -20,6 +20,7 @@ angular.module('myApp.dashboard', ['ngRoute'])
 
   console.log("DashboardController reporting for duty.");
 
+
   $scope.sectionMeta = [
     {
       id: 0,
@@ -53,7 +54,10 @@ angular.module('myApp.dashboard', ['ngRoute'])
     },
   ];
 
-  $scope.user = authService.getUserInfo();
+  $scope.user = authService.getLoggedInUser();
+  apiService.getUserInfo($scope.user.token).then(function(res){
+    console.log(res.data);
+  })
 
   $scope.currentSection = 0;
   $scope.currentTitle = $scope.sectionMeta[$scope.currentSection].title;
