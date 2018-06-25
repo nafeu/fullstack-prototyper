@@ -1,0 +1,51 @@
+<dashboard-header></dashboard-header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+
+        <div class="card m-3">
+          <div class="card-body">
+            Logged in as <strong>{{user.email}}</strong>
+          </div>
+        </div>
+
+        <dashboard-sidebar-resources></dashboard-sidebar-resources>
+      </div>
+    </nav>
+
+    <main role="main" class="mt-4 col-md-9 ml-sm-auto col-lg-10 px-4">
+
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">My Account</h1>
+      </div>
+
+      <p class="lead">Adjust settings and find info regarding your account.</p>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id=""><strong>Email Address</strong></span>
+        </div>
+        <input type="text" class="form-control" ng-model="userData.email" readonly>
+      </div>
+
+      <dl class="row">
+        <dt ng-show="userData.active" class="col-sm-2 col-xs-4">Account Status:</dt>
+        <dd ng-show="userData.active" class="col-sm-10 col-xs-8">Active</dd>
+        <dt ng-hide="userData.active" class="col-sm-2 col-xs-4">Account Status:</dt>
+        <dd ng-hide="userData.active" class="col-sm-10 col-xs-8">Deactivated</dd>
+        <dt class="col-sm-2 col-xs-4">Account Type:</dt>
+        <dd class="col-sm-10 col-xs-8">{{userData.role}}</dd>
+        <dt class="col-sm-2 col-xs-4">Created On:</dt>
+        <dd class="col-sm-10 col-xs-8">{{userData.createdAt | date:'medium'}}</dd>
+        <dt class="col-sm-2 col-xs-4">Last Updated On:</dt>
+        <dd class="col-sm-10 col-xs-8">{{userData.updatedAt | date:'medium'}}</dd>
+      </dl>
+
+      <button type="button" class="btn btn-lg btn-info mr-1" ng-click="resetPassword()">Reset Password</button>
+      <button type="button" class="btn btn-lg btn-primary" ng-click="goBack()">Go Back</button>
+
+    </main>
+  </div>
+</div>

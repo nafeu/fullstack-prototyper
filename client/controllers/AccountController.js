@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('myApp.dashboard', ['ngRoute'])
+angular.module('myApp.account', ['ngRoute'])
 
-.controller('DashboardController', ['$scope',
+.controller('AccountController', ['$scope',
                                '$window',
                                '$timeout',
                                'apiService',
@@ -18,33 +18,18 @@ angular.module('myApp.dashboard', ['ngRoute'])
                                         storageService)
 {
 
-  console.log("DashboardController reporting for duty.");
-
-
-  $scope.sectionMeta = [
-    {
-      id: 0,
-      title: "Section A",
-    },
-    {
-      id: 1,
-      title: "Section B",
-    },
-    {
-      id: 2,
-      title: "Section C",
-    }
-  ]
+  console.log("AccountController reporting for duty.");
 
   $scope.user = authService.getLoggedInUser();
+  $scope.userData = {};
 
-  $scope.currentSection = 0;
-  $scope.currentTitle = $scope.sectionMeta[$scope.currentSection].title;
+  apiService.getUserInfo($scope.user.token).then(function(res){
+    $scope.userData = res.data.user;
+    console.log($scope.userData);
+  })
 
-  $scope.selectSection = function(id) {
-    $scope.currentSection = id;
-    $scope.currentTitle = $scope.sectionMeta[$scope.currentSection].title;
+  $scope.goBack = function() {
+    $window.history.back();
   }
-
 
 }]);

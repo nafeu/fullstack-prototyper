@@ -50,5 +50,10 @@ app.config(['$locationProvider', '$routeProvider', function($locationProvider, $
     controller: 'AboutController'
   });
 
+  $routeProvider.when('/account', {
+    templateUrl: 'templates/Account.html',
+    controller: 'AccountController'
+  });
+
   $routeProvider.otherwise({redirectTo: '/'});
 }]);

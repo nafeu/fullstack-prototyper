@@ -1,58 +1,53 @@
-<body>
-  <dashboard-header></dashboard-header>
+<dashboard-header></dashboard-header>
 
-  <div class="container-fluid">
-    <div class="row">
-      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-        <div class="sidebar-sticky">
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
 
-          <div class="card m-3">
-            <div class="card-body">
-              Logged in as <strong>{{user.email}}</strong>
-            </div>
-          </div>
-
-          <div class="m-3">
-            <div ng-repeat="section in sectionMeta"
-                 class="btn btn-block"
-                 ng-click="selectSection(section.id)"
-                 ng-class="{'btn-primary': currentSection == section.id, 'btn-secondary': currentSection != section.id}">
-              {{section.title}}
-            </div>
-          </div>
-
-          <dashboard-sidebar-resources></dashboard-sidebar-resources>
-        </div>
-      </nav>
-
-      <main role="main" class="mt-4 col-md-9 ml-sm-auto col-lg-10 px-4">
-
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-          <h1 class="h2">{{currentTitle}}</h1>
-          <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group mr-2">
-              <button class="btn btn-sm btn-outline-secondary">Save</button>
-              <button class="btn btn-sm btn-outline-secondary">Reset</button>
-            </div>
+        <div class="card m-3">
+          <div class="card-body">
+            Logged in as <strong>{{user.email}}</strong>
           </div>
         </div>
 
-        <div ng-show="currentSection == 0">
-          <h3>Section A Content</h3>
-          <p>This section would be filled with content specific to "Section A". Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non veniam vel iste nam tempore veritatis dolores eius quas ullam esse culpa quasi, assumenda dignissimos molestiae sint officia et, facilis labore.</p>
+        <div class="m-3">
+          <div ng-repeat="section in sectionMeta"
+               class="btn btn-block"
+               ng-click="selectSection(section.id)"
+               ng-class="{'btn-primary': currentSection == section.id, 'btn-secondary': currentSection != section.id}">
+            {{section.title}}
+          </div>
         </div>
 
-        <div ng-show="currentSection == 1">
-          <h3>Section B Content</h3>
-          <p>This section would be filled with content specific to "Section B". Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non veniam vel iste nam tempore veritatis dolores eius quas ullam esse culpa quasi, assumenda dignissimos molestiae sint officia et, facilis labore.</p>
-        </div>
+        <dashboard-sidebar-resources></dashboard-sidebar-resources>
+      </div>
+    </nav>
 
-        <div ng-show="currentSection == 2">
-          <h3>Section C Content</h3>
-          <p>This section would be filled with content specific to "Section C". Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non veniam vel iste nam tempore veritatis dolores eius quas ullam esse culpa quasi, assumenda dignissimos molestiae sint officia et, facilis labore.</p>
-        </div>
+    <main role="main" class="mt-4 col-md-9 ml-sm-auto col-lg-10 px-4">
 
-      </main>
-    </div>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">{{currentTitle}}</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <button class="btn btn-sm btn-outline-secondary">Save</button>
+            <button class="btn btn-sm btn-outline-secondary">Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="currentSection == 0">
+        <p class="lead">This section would be filled with content specific to "Section A". Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non veniam vel iste nam tempore veritatis dolores eius quas ullam esse culpa quasi, assumenda dignissimos molestiae sint officia et, facilis labore.</p>
+      </div>
+
+      <div ng-show="currentSection == 1">
+        <p class="lead">This section would be filled with content specific to "Section B". Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non veniam vel iste nam tempore veritatis dolores eius quas ullam esse culpa quasi, assumenda dignissimos molestiae sint officia et, facilis labore.</p>
+      </div>
+
+      <div ng-show="currentSection == 2">
+        <p class="lead">This section would be filled with content specific to "Section C". Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non veniam vel iste nam tempore veritatis dolores eius quas ullam esse culpa quasi, assumenda dignissimos molestiae sint officia et, facilis labore.</p>
+      </div>
+
+    </main>
   </div>
-</body>
+</div>
