@@ -5,6 +5,7 @@ angular.module('myApp.account', ['ngRoute'])
 .controller('AccountController', ['$scope',
                                '$window',
                                '$timeout',
+                               '$location',
                                'apiService',
                                'authService',
                                'modalService',
@@ -12,6 +13,7 @@ angular.module('myApp.account', ['ngRoute'])
                                function($scope,
                                         $window,
                                         $timeout,
+                                        $location,
                                         apiService,
                                         authService,
                                         modalService,
@@ -30,6 +32,10 @@ angular.module('myApp.account', ['ngRoute'])
 
   $scope.goBack = function() {
     $window.history.back();
+  }
+
+  $scope.resetPassword = function() {
+    $location.path("/reset").search({redirect: "account"});
   }
 
 }]);

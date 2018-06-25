@@ -1,0 +1,90 @@
+<style type="text/css">
+
+  html,
+  #main {
+    height: 100%;
+  }
+
+  #main {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-align: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  body {
+    background-color: #f5f5f5;
+  }
+
+  .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+    margin-top: 100px;
+  }
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .form-signin .input-old-password {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin .input-new-password {
+    margin-bottom: -1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin .input-confirm-new-password {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+</style>
+
+<div id="main" class="text-center">
+  <form class="form-signin" name="resetForm">
+    <img class="mb-4" src="static/img/example-logo.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">{{prompt.message}}</h1>
+    <p>{{prompt.description}}</p>
+    <input ng-model="credentials.oldPassword" name="oldPassword" type="password" class="form-control input-old-password" placeholder="Old password" required autofocus>
+    <input ng-model="credentials.newPassword" name="newPassword" type="password" class="form-control input-new-password" placeholder="New password" required>
+    <input ng-model="credentials.confirmNewPassword" name="confirmNewPassword" type="password" class="form-control input-confirm-new-password" placeholder="Re-enter new password" required>
+    <button class="btn btn-lg btn-primary btn-block" ng-click="resetPassword()" ng-disabled="">Reset password</button>
+    <button class="btn btn-lg btn-primary-outline btn-block" ng-click="goBack()">Go Back</button>
+    <div ng-show="errorAlert.length > 0" class="mt-3 mb-3 alert alert-danger" role="alert">
+      {{errorAlert}}
+    </div>
+    <div ng-show="resetForm.oldPassword.$dirty && resetForm.oldPassword.$invalid && resetForm.oldPassword.$error.required" class="mt-3 mb-3 alert alert-warning" role="alert">
+      Old password is required.
+    </div>
+    <div ng-show="resetForm.newPassword.$dirty && credentials.newPassword.length < 8" class="mt-3 mb-3 alert alert-warning" role="alert">
+      New password is too short (minimum 8 characters).
+    </div>
+    <div ng-show="resetForm.confirmNewPassword.$dirty && resetForm.newPassword.$dirty && credentials.confirmNewPassword != credentials.newPassword" class="mt-3 mb-3 alert alert-warning" role="alert">
+      Passwords do not match.
+    </div>
+    <p class="mt-3 mb-3 text-muted">&copy; 2018-2019 <span app-name></span></p>
+  </form>
+</body>

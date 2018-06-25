@@ -34,7 +34,7 @@ angular.module('myApp.logout', ['ngRoute'])
 
   $scope.prompt = {
     message: "Are you sure you want to log out?",
-    description: "Currently logged in as " + $scope.user.email + "\nAny unsaved changes will be lost."
+    description: "Currently logged in as " + $scope.user.email + ". Any unsaved changes will be lost."
   }
 
   if (redirect == 'login' || redirect == 'register') {

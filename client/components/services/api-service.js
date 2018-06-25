@@ -26,4 +26,12 @@ app.service('apiService', function($http) {
       token: token
     })
   }
+
+  this.resetPassword = function(token, oldPassword, newPassword) {
+    return $http.post("api/reset", {
+      token: token,
+      oldPassword: oldPassword,
+      newPassword: newPassword
+    })
+  }
 });

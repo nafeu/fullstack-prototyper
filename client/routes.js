@@ -9,7 +9,8 @@ app.run(['$rootScope', '$location', 'authService', function ($rootScope, $locati
         && currPath != '/login'
         && currPath != '/register'
         && currPath != '/about'
-        && currPath != '/') {
+        && currPath != '/'
+        && currPath != '') {
       $location.path('/login').replace().search({redirect: currPath.substring(1)});
     } else if (isLoggedIn && (currPath == '/login' || currPath == '/register')) {
       $location.path('/logout').replace().search({redirect: currPath.substring(1)});
@@ -53,6 +54,11 @@ app.config(['$locationProvider', '$routeProvider', function($locationProvider, $
   $routeProvider.when('/account', {
     templateUrl: 'templates/Account.html',
     controller: 'AccountController'
+  });
+
+  $routeProvider.when('/reset', {
+    templateUrl: 'templates/Reset.html',
+    controller: 'ResetController'
   });
 
   $routeProvider.otherwise({redirectTo: '/'});

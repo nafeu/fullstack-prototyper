@@ -5,23 +5,24 @@
   <div class="row">
     <div class="col-12 col-md">
       <p ng-show="user">Logged in as <strong>{{user.email}}</strong></p>
+      <p ng-hide="user">Need an account? <a href="#!/register">Register here.</a></p>
       <span app-name></span>
       <small class="d-block mb-3 text-muted">&copy; 2018-2019</small>
     </div>
     <div class="col-6 col-md">
       <h5>Features</h5>
       <ul class="list-unstyled text-small">
-        <li><a class="text-muted" href="#">Feature Info A</a></li>
-        <li><a class="text-muted" href="#">Feature Info B</a></li>
-        <li><a class="text-muted" href="#">Feature Info C</a></li>
+        <li><a class="text-muted" href="#!/about">Feature Info A</a></li>
+        <li><a class="text-muted" href="#!/about">Feature Info B</a></li>
+        <li><a class="text-muted" href="#!/about">Feature Info C</a></li>
       </ul>
     </div>
     <div class="col-6 col-md">
       <h5>Resources</h5>
       <ul class="list-unstyled text-small">
-        <li><a class="text-muted" href="#">Resource A</a></li>
-        <li><a class="text-muted" href="#">Resource B</a></li>
-        <li><a class="text-muted" href="#">Resource C</a></li>
+        <li><a class="text-muted" href="#!/about">Resource A</a></li>
+        <li><a class="text-muted" href="#!/about">Resource B</a></li>
+        <li><a class="text-muted" href="#!/about">Resource C</a></li>
       </ul>
     </div>
     <div class="col-6 col-md">

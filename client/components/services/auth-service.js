@@ -57,4 +57,14 @@ app.service('authService', ['$cookies', 'apiService', function($cookies, apiServ
     }
     return null;
   }
+
+  this.resetPassword = function(oldPassword, newPassword, resolve, reject) {
+    apiService.resetPassword($cookies.getObject('auth').token, oldPassword, newPassword).then(function(res){
+      if (res.data.error) {
+        reject(res.data.error);
+      } else {
+        resolve(res.data);
+      }
+    });
+  }
 }]);

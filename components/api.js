@@ -5,13 +5,15 @@ const mongodb = require('mongodb');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
-const DB_URI = require('../config').DB_URI || process.env.DB_URI;
+
+const MONGODB_URI = require('../config').MONGODB_URI || process.env.MONGODB_URI;
 const SECRET = require('../config').SECRET || process.env.SECRET;
 const ADMIN_SEED = require('../config').ADMIN_SEED || process.env.ADMIN_SEED;
+const ALL_ROLES = ['admin', 'roleA', 'roleB', 'roleC'];
 
 const User = require('../models/user');
 
-mongoose.connect(DB_URI);
+mongoose.connect(MONGODB_URI);
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
@@ -146,6 +148,38 @@ api.post('/verify', (req, res) => {
       });
     }
   });
+})
+
+api.post('/reset', (req, res) => {
+  isAuth(req.body.token, ALL_ROLES).then(function(user){
+    bcrypt.compare(req.body.oldPassword, user.hash, function(err, matched){
+      if (matched) {
+        bcrypt.hash(req.body.newPassword, 10, function(err, hash){
+          user.hash = hash;
+          user.save(function(err){
+            if (err) {
+              res.json({
+                error: "Database error."
+              });
+            } else {
+              res.json({
+                email: user.email,
+                token: jwt.sign({ id: user._id }, SECRET)
+              });
+            }
+          })
+        })
+      } else {
+        res.json({
+          error: "Invalid password."
+        });
+      }
+    })
+  }, function(err){
+    res.json({
+      error: err
+    });
+  })
 })
 
 api.post('/user/getInfo', (req, res) => {
