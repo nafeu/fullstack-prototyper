@@ -5,6 +5,7 @@ const mongodb = require('mongodb');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
+const nodemailer = require('nodemailer');
 
 const MONGODB_URI = require('../config').MONGODB_URI || process.env.MONGODB_URI;
 const SECRET = require('../config').SECRET || process.env.SECRET;
@@ -40,6 +41,16 @@ User.find({email: adminCredentials[0]}, function(err, docs) {
     })
   }
 })
+
+// Configure Nodemailer Transporter
+let transporter = nodemailer.createTransport({
+  host: "smtp.mailtrap.io",
+  port: 2525,
+  auth: {
+    user: "6059ad5eece13a",
+    pass: "c24572bc073f0d"
+  }
+});
 
 api.use((req, res, next) => {
   const time = new Date().toTimeString();
@@ -186,9 +197,34 @@ api.post('/sendlink', (req, res) => {
   User.find({email: req.body.email}, function(err, docs){
     if (docs.length) {
       console.log("[ api.js - Sent a magic link to: " + req.body.email + " ]")
-      res.json({
-        email: req.body.email
-      })
+
+      // setup email data with unicode symbols
+      let mailOptions = {
+        from: '"Fullstack Prototyper 👻" <noreply@fsproto.com>', // sender address
+        to: req.body.email, // list of receivers
+        subject: 'Hello', // Subject line
+        text: 'Hello from fullstack prototyper!', // plain text body
+        html: '<b>Hello from fullstack prototyper!</b>' // html body
+      };
+
+      // send mail with defined transport object
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          res.json({
+            error: error
+          })
+        }
+        console.log('[ api.js - Message sent: %s ]', info.messageId);
+        // Preview only available when sending through an Ethereal account
+        console.log('[ api.js - Preview URL: %s ]', nodemailer.getTestMessageUrl(info));
+
+        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+
+        res.json({
+          email: req.body.email
+        })
+      });
     } else {
       res.json({
         error: "Invalid email address."
