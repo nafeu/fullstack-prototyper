@@ -183,7 +183,7 @@ api.post('/reset', (req, res) => {
 })
 
 api.post('/user/getInfo', (req, res) => {
-  isAuth(req.body.token, ['admin', 'roleA', 'roleB', 'roleC']).then(function(user){
+  isAuth(req.body.token, ALL_ROLES).then(function(user){
     res.json({
       user: _.omit(user.toObject(), ['hash'])
     });
