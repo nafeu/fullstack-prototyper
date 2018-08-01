@@ -67,4 +67,14 @@ app.service('authService', ['$cookies', 'apiService', function($cookies, apiServ
       }
     });
   }
+
+  this.sendMagicLink = function(email, resolve, reject) {
+    apiService.sendMagicLink(email).then(function(res){
+      if (res.data.error) {
+        reject(res.data.error);
+      } else {
+        resolve(res.data);
+      }
+    })
+  }
 }]);

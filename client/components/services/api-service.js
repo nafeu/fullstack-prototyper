@@ -34,4 +34,10 @@ app.service('apiService', function($http) {
       newPassword: newPassword
     })
   }
+
+  this.sendMagicLink = function(email) {
+    return $http.post("api/sendlink", {
+      email: email
+    })
+  }
 });

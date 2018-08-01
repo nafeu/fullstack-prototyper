@@ -182,6 +182,21 @@ api.post('/reset', (req, res) => {
   })
 })
 
+api.post('/sendlink', (req, res) => {
+  User.find({email: req.body.email}, function(err, docs){
+    if (docs.length) {
+      console.log("[ api.js - Sent a magic link to: " + req.body.email + " ]")
+      res.json({
+        email: req.body.email
+      })
+    } else {
+      res.json({
+        error: "Invalid email address."
+      })
+    }
+  })
+})
+
 api.post('/user/getInfo', (req, res) => {
   isAuth(req.body.token, ALL_ROLES).then(function(user){
     res.json({
