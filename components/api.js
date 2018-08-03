@@ -29,7 +29,8 @@ User.find({email: adminCredentials[0]}, function(err, docs) {
       const newAdmin = User({
         email: adminCredentials[0],
         hash: hash,
-        role: 'admin'
+        role: 'admin',
+        emailVerified: true
       });
       newAdmin.save(function(err){
         if (err) {
@@ -89,8 +90,7 @@ api.post('/register', (req, res) => {
               })
             } else {
               res.json({
-                email: newUser.email,
-                token: jwt.sign({ id: newUser._id }, SECRET)
+                email: newUser.email
               });
             }
           })
@@ -113,6 +113,11 @@ api.post('/authenticate', (req, res) => {
             if (!result.active) {
               res.json({
                 error: "Account has been deactivated."
+              });
+            }
+            else if (!result.emailVerified) {
+              res.json({
+                error: "Email address has not yet been verified."
               });
             } else {
               res.json({
@@ -150,6 +155,10 @@ api.post('/verify', (req, res) => {
         } else if (!user.active) {
           res.json({
             error: "Account has been deactivated."
+          })
+        } else if (!user.emailVerified) {
+          res.json({
+            error: "Email address has not yet been verified."
           })
         } else {
           res.json({
@@ -215,11 +224,7 @@ api.post('/sendlink', (req, res) => {
           })
         }
         console.log('[ api.js - Message sent: %s ]', info.messageId);
-        // Preview only available when sending through an Ethereal account
         console.log('[ api.js - Preview URL: %s ]', nodemailer.getTestMessageUrl(info));
-
-        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 
         res.json({
           email: req.body.email
@@ -256,6 +261,8 @@ function isAuth(token, roles) {
             reject(err);
           } else if (!user.active) {
             reject("Account has been deactivated.");
+          } else if (!user.emailVerified) {
+            reject("Email address has not yet been verified.");
           } else if (!roles.includes(user.role)) {
             reject("Unauthorized request.")
           } else {

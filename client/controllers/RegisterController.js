@@ -30,8 +30,9 @@ angular.module('myApp.register', ['ngRoute'])
         && $scope.credentials.password.length >= 8)
     {
       authService.register($scope.credentials.email, $scope.credentials.password, function(res){
-        modalService.alert("New Account Created", "New account successfully registered for " + $scope.credentials.email);
-        $location.path("/dashboard").search({});
+        modalService.alert("New Account Created",
+                           "New account successfully registered. A link to verify your email address has been sent to " + $scope.credentials.email);
+        $location.path("/login").search({});
       }, function(error){
         $scope.errorAlert = error;
       });

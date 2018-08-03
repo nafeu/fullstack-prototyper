@@ -18,7 +18,6 @@ app.service('authService', ['$cookies', 'apiService', function($cookies, apiServ
       if (res.data.error) {
         reject(res.data.error);
       } else {
-        $cookies.putObject('auth', res.data);
         resolve(res.data);
       }
     })
