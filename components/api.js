@@ -161,9 +161,14 @@ api.post('/verify', (req, res) => {
             error: "Email address has not yet been verified."
           })
         } else {
-          res.json({
-            authorized: true
-          });
+          if (decoded.login) {
+            res.json({
+              email: user.email,
+              token: jwt.sign({id: user._id}, SECRET)
+            })
+          } else {
+            res.json({authorized: true});
+          }
         }
       });
     }
@@ -205,31 +210,37 @@ api.post('/reset', (req, res) => {
 api.post('/sendlink', (req, res) => {
   User.find({email: req.body.email}, function(err, docs){
     if (docs.length) {
-      console.log("[ api.js - Sent a magic link to: " + req.body.email + " ]")
+      console.log("[ api.js - Sending a magic link to: " + req.body.email + " ]")
 
-      // setup email data with unicode symbols
-      let mailOptions = {
-        from: '"Fullstack Prototyper 👻" <noreply@fsproto.com>', // sender address
-        to: req.body.email, // list of receivers
-        subject: 'Hello', // Subject line
-        text: 'Hello from fullstack prototyper!', // plain text body
-        html: '<b>Hello from fullstack prototyper!</b>' // html body
-      };
+      generateMagicLink(req.body.email).then(function(magicLink) {
+        // setup email data with unicode symbols
+        let mailOptions = {
+          from: '"Fullstack Prototyper" <noreply@fsproto.com>', // sender address
+          to: req.body.email, // list of receivers
+          subject: 'Magic Sign-in Link', // Subject line
+          text: 'Click the following link to sign-in: ' + magicLink, // plain text body
+          html: '<b>Click the following link to sign-in: <a href="' + magicLink + '">' + magicLink + '</a></b>' // html body
+        };
 
-      // send mail with defined transport object
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            res.json({
+              error: error
+            })
+          }
+          console.log('[ api.js - Message sent: %s ]', info.messageId);
+          console.log('[ api.js - Preview URL: %s ]', nodemailer.getTestMessageUrl(info));
+
           res.json({
-            error: error
+            email: req.body.email
           })
-        }
-        console.log('[ api.js - Message sent: %s ]', info.messageId);
-        console.log('[ api.js - Preview URL: %s ]', nodemailer.getTestMessageUrl(info));
-
+        });
+      }, function(err) {
         res.json({
-          email: req.body.email
+          error: "Error creating magic link."
         })
-      });
+      })
     } else {
       res.json({
         error: "Invalid email address."
@@ -271,6 +282,23 @@ function isAuth(token, roles) {
         });
       }
     });
+  })
+}
+
+function generateMagicLink(email) {
+  return new Promise((resolve, reject) => {
+    User.findOne({email: email}, (err, result) => {
+      if (err) {
+        reject(err)
+      } else {
+        if (result) {
+          const token = jwt.sign({id: result.id, login: true}, SECRET)
+          resolve("http://localhost:8000/#!/login?token=" + token)
+        } else {
+          reject("Account does not exist.")
+        }
+      }
+    })
   })
 }
 

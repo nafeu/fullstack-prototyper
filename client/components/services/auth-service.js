@@ -34,6 +34,17 @@ app.service('authService', ['$cookies', 'apiService', function($cookies, apiServ
     })
   }
 
+  this.loginByToken = function(token, resolve, reject) {
+    apiService.verify(token).then(function(res){
+      if (res.data.error) {
+        reject(res.data.error);
+      } else {
+        $cookies.putObject('auth', res.data);
+        resolve(res.data);
+      }
+    })
+  }
+
   this.logout = function(resolve) {
     $cookies.remove('auth');
     resolve();

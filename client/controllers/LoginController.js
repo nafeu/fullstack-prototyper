@@ -5,6 +5,7 @@ angular.module('myApp.login', ['ngRoute'])
 .controller('LoginController', ['$scope',
                                 '$window',
                                 '$location',
+                                '$routeParams',
                                 'apiService',
                                 'authService',
                                 'modalService',
@@ -12,6 +13,7 @@ angular.module('myApp.login', ['ngRoute'])
                                 function($scope,
                                          $window,
                                          $location,
+                                         $routeParams,
                                          apiService,
                                          authService,
                                          modalService,
@@ -29,6 +31,16 @@ angular.module('myApp.login', ['ngRoute'])
   };
 
   $scope.apiError = "";
+
+  var token = $routeParams.token;
+
+  if (token) {
+    authService.loginByToken(token, function(res){
+      $location.path("/dashboard").search({});
+    }, function(error){
+      modalService.alert("Login Failed", "Magic-link login failed.");
+    });
+  }
 
   $scope.login = function() {
     $scope.loginButton = "Signing In...";
