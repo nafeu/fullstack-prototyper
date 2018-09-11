@@ -53,8 +53,4 @@ angular.module('myApp.reset', ['ngRoute'])
     description: "Currently logged in as " + $scope.user.email
   }
 
-  $scope.goBack = function() {
-    $window.history.back();
-  }
-
 }]);

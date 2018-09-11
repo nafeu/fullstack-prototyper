@@ -41,8 +41,4 @@ angular.module('myApp.logout', ['ngRoute'])
     $scope.prompt.message = "You must logout to continue.";
   }
 
-  $scope.goBack = function() {
-    $window.history.back();
-  }
-
 }]);

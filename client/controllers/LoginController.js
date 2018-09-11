@@ -68,8 +68,4 @@ angular.module('myApp.login', ['ngRoute'])
     }
   }
 
-  $scope.goBack = function() {
-    $window.history.back();
-  }
-
 }]);

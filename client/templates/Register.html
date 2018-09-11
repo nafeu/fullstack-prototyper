@@ -15,7 +15,7 @@
     align-items: center;
     -webkit-box-pack: center;
     justify-content: center;
-    padding-top: 40px;
+    padding-top: 140px;
     padding-bottom: 40px;
   }
 
@@ -28,7 +28,6 @@
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
-    margin-top: 100px;
   }
   .form-signin .checkbox {
     font-weight: 400;
@@ -71,7 +70,6 @@
     <input ng-model="credentials.password" name="password" type="password" class="form-control input-password" placeholder="Password" required>
     <input ng-model="credentials.confirmPassword" name="confirmPassword" type="password" class="form-control input-confirm-password" placeholder="Re-enter password" required>
     <button class="btn btn-lg btn-primary btn-block" ng-click="register()" ng-disabled="">Create Account</button>
-    <button class="btn btn-lg btn-primary-outline btn-block" ng-click="goBack()">Go Back</button>
     <div ng-show="errorAlert.length > 0" class="mt-3 mb-3 alert alert-danger" role="alert">
       {{errorAlert}}
     </div>

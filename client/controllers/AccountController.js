@@ -30,10 +30,6 @@ angular.module('myApp.account', ['ngRoute'])
     console.log($scope.userData);
   })
 
-  $scope.goBack = function() {
-    $window.history.back();
-  }
-
   $scope.resetPassword = function() {
     $location.path("/reset").search({redirect: "account"});
   }
