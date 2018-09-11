@@ -74,17 +74,21 @@
         <button class="btn btn-lg btn-primary btn-block" ng-click="sendMagicLink()" ng-disabled="">{{ sendMagicLinkButton }}</button>
       </form>
     </div>
-    <div ng-show="apiError.length > 0" class="mt-3 mb-3 alert alert-danger" role="alert">
-      {{apiError}}
-    </div>
-    <div ng-show="loginForm.password.$dirty && loginForm.password.$invalid && loginForm.password.$error.required" class="mt-3 mb-3 alert alert-warning" role="alert">
-      Password is required.
-    </div>
-    <div ng-show="loginForm.email.$dirty && loginForm.email.$invalid && loginForm.email.$error.required" class="mt-3 mb-3 alert alert-warning" role="alert">
-      Email is required.
-    </div>
-    <div ng-show="magicForm.email.$dirty && magicForm.email.$invalid && magicForm.email.$error.required" class="mt-3 mb-3 alert alert-warning" role="alert">
-      Email is required.
+  </div>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div ng-show="apiError.length > 0" class="mt-3 mb-3 alert alert-danger" role="alert">
+        {{apiError}}
+      </div>
+      <div ng-show="loginForm.password.$dirty && loginForm.password.$invalid && loginForm.password.$error.required" class="mt-3 mb-3 alert alert-warning" role="alert">
+        Password is required.
+      </div>
+      <div ng-show="loginForm.email.$dirty && loginForm.email.$invalid && loginForm.email.$error.required" class="mt-3 mb-3 alert alert-warning" role="alert">
+        Email is required.
+      </div>
+      <div ng-show="magicForm.email.$dirty && magicForm.email.$invalid && magicForm.email.$error.required" class="mt-3 mb-3 alert alert-warning" role="alert">
+        Email is required.
+      </div>
     </div>
   </div>
   <p class="mt-3 mb-3">Don't have an account? <a href="#!/register">Create one here.</a></p>

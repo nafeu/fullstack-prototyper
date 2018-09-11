@@ -40,4 +40,10 @@ app.service('apiService', function($http) {
       email: email
     })
   }
+
+  this.getUsers = function(token) {
+    return $http.post("api/users", {
+      token: token
+    })
+  }
 });

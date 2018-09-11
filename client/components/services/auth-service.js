@@ -50,11 +50,14 @@ app.service('authService', ['$cookies', 'apiService', function($cookies, apiServ
     resolve();
   }
 
-  this.isLoggedIn = function() {
+  this.getAuth = function() {
     var userObject = $cookies.getObject('auth');
     if (userObject) {
-      if (userObject.email && userObject.token) {
-        return true;
+      if (userObject.email && userObject.token && userObject.role) {
+        return {
+          isLoggedIn: true,
+          isAdmin: (userObject.role == 'admin')
+        };
       }
     }
     return false;

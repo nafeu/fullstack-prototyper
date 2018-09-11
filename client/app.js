@@ -6,6 +6,7 @@ var app = angular.module('myApp', [
   'ngCookies',
   'myApp.about',
   'myApp.account',
+  'myApp.admin',
   'myApp.reset',
   'myApp.login',
   'myApp.logout',

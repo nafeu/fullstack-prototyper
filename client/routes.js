@@ -2,18 +2,20 @@
 
 app.run(['$rootScope', '$location', 'authService', function ($rootScope, $location, authService) {
   $rootScope.$on('$routeChangeStart', function (event) {
-    var isLoggedIn = authService.isLoggedIn();
+    var auth = authService.getAuth();
     var currPath = $location.path();
-    console.log("Route change -> " + currPath + " --- Auth: " + isLoggedIn);
-    if (!isLoggedIn
+    console.log("Route change -> " + currPath + " --- Auth: " + JSON.stringify(auth));
+    if (!auth.isLoggedIn
         && currPath != '/login'
         && currPath != '/register'
         && currPath != '/about'
         && currPath != '/'
         && currPath != '') {
       $location.path('/login').replace().search({redirect: currPath.substring(1)});
-    } else if (isLoggedIn && (currPath == '/login' || currPath == '/register')) {
+    } else if (auth.isLoggedIn && (currPath == '/login' || currPath == '/register')) {
       $location.path('/logout').replace().search({redirect: currPath.substring(1)});
+    } else if (auth.isLoggedIn && !auth.isAdmin && (currPath == '/admin')) {
+      $location.path('/account');
     }
   });
 }]);
@@ -54,6 +56,11 @@ app.config(['$locationProvider', '$routeProvider', function($locationProvider, $
   $routeProvider.when('/account', {
     templateUrl: 'templates/Account.html',
     controller: 'AccountController'
+  });
+
+  $routeProvider.when('/admin', {
+    templateUrl: 'templates/Admin.html',
+    controller: 'AdminController'
   });
 
   $routeProvider.when('/reset', {

@@ -1,0 +1,49 @@
+<dashboard-header></dashboard-header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+
+        <div class="card m-3">
+          <div class="card-body">
+            Logged in as <strong>{{user.email}}</strong>
+          </div>
+        </div>
+
+        <dashboard-sidebar-resources></dashboard-sidebar-resources>
+      </div>
+    </nav>
+
+    <main role="main" class="mt-4 col-md-9 ml-sm-auto col-lg-10 px-4">
+
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Admin Panel</h1>
+      </div>
+
+      <p class="lead">Activate or deactivate user accounts</p>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Active</th>
+            <th>Verified</th>
+            <th>Role</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in users">
+            <td>{{item.email}}</td>
+            <td>{{item.active}}</td>
+            <td>{{item.emailVerified}}</td>
+            <td>{{item.role}}</td>
+            <td>{{item.createdAt}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </main>
+  </div>
+</div>

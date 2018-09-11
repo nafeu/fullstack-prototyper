@@ -122,6 +122,7 @@ api.post('/authenticate', (req, res) => {
             } else {
               res.json({
                 email: result.email,
+                role: result.role,
                 token: jwt.sign({ id: result._id }, SECRET)
               });
             }
@@ -171,6 +172,7 @@ api.post('/verify', (req, res) => {
               } else {
                 res.json({
                   email: user.email,
+                  role: user.role,
                   token: jwt.sign({ id: user._id }, SECRET)
                 });
               }
@@ -268,6 +270,79 @@ api.post('/user/getInfo', (req, res) => {
       error: err
     })
   });
+})
+
+api.post('/user/activate', (req, res) => {
+  isAuth(req.body.token, ['admin']).then(() => {
+    User.findById(req.body.id, (err, user) => {
+      user.active = true;
+      user.save(function(err){
+        if (err) {
+          res.json({
+            error: "Database error."
+          });
+        } else {
+          res.json({
+            success: true
+          });
+        }
+      })
+    })
+  })
+})
+
+api.post('/user/deactivate', (req, res) => {
+  isAuth(req.body.token, ['admin']).then(() => {
+    User.findById(req.body.id, (err, user) => {
+      user.active = false;
+      user.save(function(err){
+        if (err) {
+          res.json({
+            error: "Database error."
+          });
+        } else {
+          res.json({
+            success: true
+          });
+        }
+      })
+    })
+  })
+})
+
+api.post('/user/changeRole', (req, res) => {
+  isAuth(req.body.token, ['admin']).then(() => {
+    User.findById(req.body.id, (err, user) => {
+      user.role = req.body.newRole;
+      user.save(function(err){
+        if (err) {
+          res.json({
+            error: "Database error."
+          });
+        } else {
+          res.json({
+            success: true
+          });
+        }
+      })
+    })
+  })
+})
+
+api.post('/users', (req, res) => {
+  isAuth(req.body.token, ['admin']).then((admin) => {
+    User.find({}, function(err, users) {
+      let userList = [];
+
+      users.forEach(function(user) {
+        if (user.id != admin.id) {
+          userList.push(_.omit(user.toObject(), ['hash']));
+        }
+      });
+
+      res.send(userList);
+    });
+  })
 })
 
 function isAuth(token, roles) {
