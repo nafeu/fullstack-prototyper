@@ -156,15 +156,24 @@ api.post('/verify', (req, res) => {
           res.json({
             error: "Account has been deactivated."
           })
-        } else if (!user.emailVerified) {
+        } else if (!user.emailVerified && !decoded.hasOwnProperty('verify')) {
           res.json({
             error: "Email address has not yet been verified."
           })
         } else {
-          if (decoded.login) {
-            res.json({
-              email: user.email,
-              token: jwt.sign({id: user._id}, SECRET)
+          if (decoded.verify) {
+            user.emailVerified = true;
+            user.save(function(err){
+              if (err) {
+                res.json({
+                  error: "Database error."
+                });
+              } else {
+                res.json({
+                  email: user.email,
+                  token: jwt.sign({ id: user._id }, SECRET)
+                });
+              }
             })
           } else {
             res.json({authorized: true});
@@ -292,7 +301,7 @@ function generateMagicLink(email) {
         reject(err)
       } else {
         if (result) {
-          const token = jwt.sign({id: result.id, login: true}, SECRET)
+          const token = jwt.sign({id: result.id, verify: true}, SECRET)
           resolve("http://localhost:8000/#!/login?token=" + token)
         } else {
           reject("Account does not exist.")
