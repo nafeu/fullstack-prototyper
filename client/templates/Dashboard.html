@@ -12,7 +12,7 @@
         </div>
 
         <div class="m-3">
-          <div ng-repeat="section in sectionMeta"
+          <div ng-repeat="section in sections"
                class="btn btn-block"
                ng-click="selectSection(section.id)"
                ng-class="{'btn-primary': currentSection == section.id, 'btn-secondary': currentSection != section.id}">
@@ -36,17 +36,743 @@
         </div>
       </div>
 
+      <!-- SECTION START -->
       <div ng-show="currentSection == 0">
-        <p class="lead">This section would be filled with content specific to "Section A". Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non veniam vel iste nam tempore veritatis dolores eius quas ullam esse culpa quasi, assumenda dignissimos molestiae sint officia et, facilis labore.</p>
+        <p><strong>Record Form</strong></p>
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="child-name">Child's Name</label>
+              <input type="text" class="form-control" id="child-name" placeholder="Enter child's name">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="id-number">ID Number</label>
+              <input type="text" class="form-control" id="id-number" placeholder="Enter ID Number">
+            </div>
+          </div>
+          <div class="form-row ml-2">
+            <div class="form-group">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="genderM" value="male" checked>
+                <label class="form-check-label" for="genderM">
+                  Male
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="genderF" value="female">
+                <label class="form-check-label" for="genderF">
+                  Female
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="school-agency">School / Agency</label>
+              <input type="text" class="form-control" id="school-agency" placeholder="Enter school or agency">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="teacher">Teacher</label>
+              <input type="text" class="form-control" id="teacher" placeholder="Enter teacher's name">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="examiner">Examiner</label>
+              <input type="text" class="form-control" id="examiner" placeholder="Enter examiner">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="referred-by">Referred By</label>
+              <input type="text" class="form-control" id="referred-by" placeholder="Enter referral">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-group col-md-6 mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Date Tested</span>
+              </div>
+              <input type="date" class="form-control" placeholder="Enter Date Tested">
+            </div>
+            <div class="input-group col-md-6"></div>
+            <div class="input-group col-md-6 mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Date Of Birth</span>
+              </div>
+              <input type="date" class="form-control" placeholder="Enter Date Tested">
+            </div>
+            <div class="input-group col-md-6"></div>
+            <div class="input-group col-md-6 mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Age</span>
+              </div>
+              <input type="date" class="form-control" placeholder="Enter Date Tested">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <hr>
+        <h5>General Administration and Scoring Direction</h5>
+        <ol>
+          <li>Administer the items in the order in which they appear on the <em>Record Form.</em></li>
+          <li>Abbrevieated administration and scoring directions appear on the <em>Record Form.</em> For complete, item-specific administration and scoring directions, refer to the <a href="#"><em>Examiner's Manual</em></a></li>
+          <li>Repetition of some items is allowed. Those items are noted on the <em>Record Form</em> and in the <a href="#"><em>Examiner's Manual.</em></a></li>
+          <li>Do not penalize the child for a delay in response (approximately 5 seconds) to any of the items.</li>
+          <li>If necessary, on items where the child is supposed to imitate your model, say <strong>"My turn"</strong> while pointing to yourself and <strong>"Your turn"</strong> while pointing to the child so he or she will understand the turn-taking task.</li>
+        </ol>
       </div>
+      <!-- SECTION END -->
 
-      <div ng-show="currentSection == 1">
-        <p class="lead">This section would be filled with content specific to "Section B". Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non veniam vel iste nam tempore veritatis dolores eius quas ullam esse culpa quasi, assumenda dignissimos molestiae sint officia et, facilis labore.</p>
-      </div>
+      <!-- SECTION MAIN START -->
+      <div id="section-mandibular-facial-labial-control" ng-show="currentSection == 1">
 
-      <div ng-show="currentSection == 2">
-        <p class="lead">This section would be filled with content specific to "Section C". Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non veniam vel iste nam tempore veritatis dolores eius quas ullam esse culpa quasi, assumenda dignissimos molestiae sint officia et, facilis labore.</p>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-body">
+                <h4>Directions Title</h4>
+                <h6>Directions Subheading</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aperiam aut modi eligendi et amet inventore placeat cumque accusamus provident, accusantium ipsam, earum! Eum a aperiam id, sed perferendis porro?</p>
+                <p><em>Directions</em></p>
+                <ol type="a">
+                  <li>Auditory Modality: Say, <strong>"Show me how you __________."</strong></li>
+                  <li>Visual Modality: Say, <strong>"Look at me and do what I do."</strong> Model the movement.</li>
+                  <li>Tactile Modality: Say, <strong>"Now I'm going to help you __________."</strong> Guide the child's movements as shown on the <em>Training Videotape</em> while modeling the movement.</li>
+                </ol>
+                <h6>General Motor Control Score Descriptions</h6>
+                <p>The following score descriptions are general. Refer to the <a href=""><em>Examiner's Manual.</em></a> for item-specific score descriptions</p>
+                <ul>
+                  <li><strong>2</strong> = Movement is precise in all parameters.</li>
+                  <li><strong>1</strong> = Movement is partially imprecise in one or more parameters.</li>
+                  <li><strong>0</strong> = Movement is severely imprecise in one or more parameters.</li>
+                </ul>
+                <p>If the child achieves a score of <strong>2</strong> in the Auditory or Visual columns, enter a score of <strong>2</strong> in the remaining column(s). If the child does not respond, write NR next to the column and score as 0.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h4>Training Video Reference</h4>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <!-- <p>Say, <strong>"Let's do some more."</strong></p> -->
+          </div>
+          <div class="col-md-6">
+            <h5 class="text-center">Motor Control Score</h5>
+            <hr>
+            <div class="row">
+              <div class="col"><h5>Auditory</h5></div>
+              <div class="col"><h5>Visual</h5></div>
+              <div class="col"><h5>Tactile</h5></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW EXAMPLE START -->
+        <div ng-repeat="question in sections[1].questions" class="row">
+          <div class="col-md-6">
+            <p class="mt-4"><strong>{{question.number}}. {{question.title}}</strong></p>
+            <ul ng-repeat="choice in question.choices">
+              <li>{{choice}}</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group mt-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text">a.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.auditory" ng-change="updateAuditoryScore()" class="form-control">
+              <div class="input-group-prepend">
+                <span class="input-group-text">b.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.visual" ng-change="updateVisualScore()" class="form-control">
+              <div class="input-group-prepend">
+                <span class="input-group-text">c.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.tactile" ng-change="updateTactileScore()" class="form-control">
+            </div>
+          </div>
+        </div>
+        <!-- ROW EXAMPLE END -->
+
+        <div class="row mt-4">
+          <div class="col-md-6"></div>
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h6 class="text-center">Auditory Score</h6>
+                    <h3 class="text-center">{{sections[1].auditoryScore}}</h3>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-center">Visual Score</h6>
+                    <h3 class="text-center">{{sections[1].visualScore}}</h3>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-center">Tactile Score</h6>
+                    <h3 class="text-center">{{sections[1].tactileScore}}</h3>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col">
+                    <h5 class="text-center">Items _-_ MC Score</h5>
+                    <h3 class="text-center">{{sections[1].motorControlScore}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
       </div>
+      <!-- SECTION MAIN END -->
+
+
+      <!-- SECTION MAIN START -->
+      <div id="section-mandibular-facial-labial-control" ng-show="currentSection == 2">
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-body">
+                <h4>Directions Title</h4>
+                <h6>Directions Subheading</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aperiam aut modi eligendi et amet inventore placeat cumque accusamus provident, accusantium ipsam, earum! Eum a aperiam id, sed perferendis porro?</p>
+                <p><em>Directions</em></p>
+                <ol type="a">
+                  <li>Auditory Modality: Say, <strong>"Show me how you __________."</strong></li>
+                  <li>Visual Modality: Say, <strong>"Look at me and do what I do."</strong> Model the movement.</li>
+                  <li>Tactile Modality: Say, <strong>"Now I'm going to help you __________."</strong> Guide the child's movements as shown on the <em>Training Videotape</em> while modeling the movement.</li>
+                </ol>
+                <h6>General Motor Control Score Descriptions</h6>
+                <p>The following score descriptions are general. Refer to the <a href=""><em>Examiner's Manual.</em></a> for item-specific score descriptions</p>
+                <ul>
+                  <li><strong>2</strong> = Movement is precise in all parameters.</li>
+                  <li><strong>1</strong> = Movement is partially imprecise in one or more parameters.</li>
+                  <li><strong>0</strong> = Movement is severely imprecise in one or more parameters.</li>
+                </ul>
+                <p>If the child achieves a score of <strong>2</strong> in the Auditory or Visual columns, enter a score of <strong>2</strong> in the remaining column(s). If the child does not respond, write NR next to the column and score as 0.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h4>Training Video Reference</h4>
+            <!-- <iframe width="250" height="150" src="https://www.youtube.com/embed/56k16NcmJHg?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <!-- <p>Say, <strong>"Let's do some more."</strong></p> -->
+          </div>
+          <div class="col-md-6">
+            <h5 class="text-center">Motor Control Score</h5>
+            <hr>
+            <div class="row">
+              <div class="col"><h5>Auditory</h5></div>
+              <div class="col"><h5>Visual</h5></div>
+              <div class="col"><h5>Tactile</h5></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW EXAMPLE START -->
+        <div ng-repeat="question in sections[2].questions" class="row">
+          <div class="col-md-6">
+            <p class="mt-4"><strong>{{question.number}}. {{question.title}}</strong></p>
+            <ul ng-repeat="choice in question.choices">
+              <li>{{choice}}</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group mt-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text">a.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.auditory" ng-change="updateAuditoryScore()" class="form-control">
+              <div class="input-group-prepend">
+                <span class="input-group-text">b.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.visual" ng-change="updateVisualScore()" class="form-control">
+              <div class="input-group-prepend">
+                <span class="input-group-text">c.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.tactile" ng-change="updateTactileScore()" class="form-control">
+            </div>
+          </div>
+        </div>
+        <!-- ROW EXAMPLE END -->
+
+        <div class="row mt-4">
+          <div class="col-md-6"></div>
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h6 class="text-center">Auditory Score</h6>
+                    <h3 class="text-center">{{sections[2].auditoryScore}}</h3>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-center">Visual Score</h6>
+                    <h3 class="text-center">{{sections[2].visualScore}}</h3>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-center">Tactile Score</h6>
+                    <h3 class="text-center">{{sections[2].tactileScore}}</h3>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col">
+                    <h5 class="text-center">Items _-_ MC Score</h5>
+                    <h3 class="text-center">{{sections[2].motorControlScore}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
+      </div>
+      <!-- SECTION MAIN END -->
+
+
+      <!-- SECTION MAIN START -->
+      <div id="section-mandibular-facial-labial-control" ng-show="currentSection == 3">
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-body">
+                <h4>Directions Title</h4>
+                <h6>Directions Subheading</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aperiam aut modi eligendi et amet inventore placeat cumque accusamus provident, accusantium ipsam, earum! Eum a aperiam id, sed perferendis porro?</p>
+                <p><em>Directions</em></p>
+                <ol type="a">
+                  <li>Auditory Modality: Say, <strong>"Show me how you __________."</strong></li>
+                  <li>Visual Modality: Say, <strong>"Look at me and do what I do."</strong> Model the movement.</li>
+                  <li>Tactile Modality: Say, <strong>"Now I'm going to help you __________."</strong> Guide the child's movements as shown on the <em>Training Videotape</em> while modeling the movement.</li>
+                </ol>
+                <h6>General Motor Control Score Descriptions</h6>
+                <p>The following score descriptions are general. Refer to the <a href=""><em>Examiner's Manual.</em></a> for item-specific score descriptions</p>
+                <ul>
+                  <li><strong>2</strong> = Movement is precise in all parameters.</li>
+                  <li><strong>1</strong> = Movement is partially imprecise in one or more parameters.</li>
+                  <li><strong>0</strong> = Movement is severely imprecise in one or more parameters.</li>
+                </ul>
+                <p>If the child achieves a score of <strong>2</strong> in the Auditory or Visual columns, enter a score of <strong>2</strong> in the remaining column(s). If the child does not respond, write NR next to the column and score as 0.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h4>Training Video Reference</h4>
+            <!-- <iframe width="250" height="150" src="https://www.youtube.com/embed/56k16NcmJHg?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <p>Say, <strong>"Let's do some more."</strong></p>
+          </div>
+          <div class="col-md-6">
+            <h5 class="text-center">Motor Control Score</h5>
+            <hr>
+            <div class="row">
+              <div class="col"><h5>Auditory</h5></div>
+              <div class="col"><h5>Visual</h5></div>
+              <div class="col"><h5>Tactile</h5></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW EXAMPLE START -->
+        <div ng-repeat="question in sections[3].questions" class="row">
+          <div class="col-md-6">
+            <p class="mt-4"><strong>{{question.number}}. {{question.title}}</strong></p>
+            <ul ng-repeat="choice in question.choices">
+              <li>{{choice}}</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group mt-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text">a.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.auditory" ng-change="updateAuditoryScore()" class="form-control">
+              <div class="input-group-prepend">
+                <span class="input-group-text">b.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.visual" ng-change="updateVisualScore()" class="form-control">
+              <div class="input-group-prepend">
+                <span class="input-group-text">c.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.tactile" ng-change="updateTactileScore()" class="form-control">
+            </div>
+          </div>
+        </div>
+        <!-- ROW EXAMPLE END -->
+
+        <div class="row mt-4">
+          <div class="col-md-6"></div>
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h6 class="text-center">Auditory Score</h6>
+                    <h3 class="text-center">{{sections[3].auditoryScore}}</h3>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-center">Visual Score</h6>
+                    <h3 class="text-center">{{sections[3].visualScore}}</h3>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-center">Tactile Score</h6>
+                    <h3 class="text-center">{{sections[3].tactileScore}}</h3>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col">
+                    <h5 class="text-center">Items _-_ MC Score</h5>
+                    <h3 class="text-center">{{sections[3].motorControlScore}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
+      </div>
+      <!-- SECTION MAIN END -->
+
+
+      <!-- SECTION MAIN START -->
+      <div id="section-mandibular-facial-labial-control" ng-show="currentSection == 4">
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-body">
+                <h4>Directions Title</h4>
+                <h6>Directions Subheading</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aperiam aut modi eligendi et amet inventore placeat cumque accusamus provident, accusantium ipsam, earum! Eum a aperiam id, sed perferendis porro?</p>
+                <p><em>Directions</em></p>
+                <ol type="a">
+                  <li>Auditory Modality: Say, <strong>"Show me how you __________."</strong></li>
+                  <li>Visual Modality: Say, <strong>"Look at me and do what I do."</strong> Model the movement.</li>
+                  <li>Tactile Modality: Say, <strong>"Now I'm going to help you __________."</strong> Guide the child's movements as shown on the <em>Training Videotape</em> while modeling the movement.</li>
+                </ol>
+                <h6>General Motor Control Score Descriptions</h6>
+                <p>The following score descriptions are general. Refer to the <a href=""><em>Examiner's Manual.</em></a> for item-specific score descriptions</p>
+                <ul>
+                  <li><strong>2</strong> = Movement is precise in all parameters.</li>
+                  <li><strong>1</strong> = Movement is partially imprecise in one or more parameters.</li>
+                  <li><strong>0</strong> = Movement is severely imprecise in one or more parameters.</li>
+                </ul>
+                <p>If the child achieves a score of <strong>2</strong> in the Auditory or Visual columns, enter a score of <strong>2</strong> in the remaining column(s). If the child does not respond, write NR next to the column and score as 0.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h4>Training Video Reference</h4>
+            <!-- <iframe width="250" height="150" src="https://www.youtube.com/embed/56k16NcmJHg?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <!-- <p>Say, <strong>"Let's do some more."</strong></p> -->
+          </div>
+          <div class="col-md-6">
+            <h5 class="text-center">Motor Control Score</h5>
+            <hr>
+            <div class="row">
+              <div class="col"><h5>Auditory</h5></div>
+              <div class="col"><h5>Visual</h5></div>
+              <div class="col"><h5>Tactile</h5></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW EXAMPLE START -->
+        <div ng-repeat="question in sections[4].questions" class="row">
+          <div class="col-md-6">
+            <p class="mt-4"><strong>{{question.number}}. {{question.title}}</strong></p>
+            <ul ng-repeat="choice in question.choices">
+              <li>{{choice}}</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group mt-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text">a.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.auditory" ng-change="updateAuditoryScore()" class="form-control">
+              <div class="input-group-prepend">
+                <span class="input-group-text">b.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.visual" ng-change="updateVisualScore()" class="form-control">
+              <div class="input-group-prepend">
+                <span class="input-group-text">c.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.tactile" ng-change="updateTactileScore()" class="form-control">
+            </div>
+          </div>
+        </div>
+        <!-- ROW EXAMPLE END -->
+
+        <div class="row mt-4">
+          <div class="col-md-6"></div>
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h6 class="text-center">Auditory Score</h6>
+                    <h3 class="text-center">{{sections[4].auditoryScore}}</h3>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-center">Visual Score</h6>
+                    <h3 class="text-center">{{sections[4].visualScore}}</h3>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-center">Tactile Score</h6>
+                    <h3 class="text-center">{{sections[4].tactileScore}}</h3>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col">
+                    <h5 class="text-center">Items _-_ MC Score</h5>
+                    <h3 class="text-center">{{sections[4].motorControlScore}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
+      </div>
+      <!-- SECTION MAIN END -->
+
+
+      <!-- SECTION MAIN START -->
+      <div id="section-mandibular-facial-labial-control" ng-show="currentSection == 5">
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-body">
+                <h4>Directions Title</h4>
+                <h6>Directions Subheading</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aperiam aut modi eligendi et amet inventore placeat cumque accusamus provident, accusantium ipsam, earum! Eum a aperiam id, sed perferendis porro?</p>
+                <p><em>Directions</em></p>
+                <ol type="a">
+                  <li>Auditory Modality: Say, <strong>"Show me how you __________."</strong></li>
+                  <li>Visual Modality: Say, <strong>"Look at me and do what I do."</strong> Model the movement.</li>
+                  <li>Tactile Modality: Say, <strong>"Now I'm going to help you __________."</strong> Guide the child's movements as shown on the <em>Training Videotape</em> while modeling the movement.</li>
+                </ol>
+                <h6>General Motor Control Score Descriptions</h6>
+                <p>The following score descriptions are general. Refer to the <a href=""><em>Examiner's Manual.</em></a> for item-specific score descriptions</p>
+                <ul>
+                  <li><strong>2</strong> = Movement is precise in all parameters.</li>
+                  <li><strong>1</strong> = Movement is partially imprecise in one or more parameters.</li>
+                  <li><strong>0</strong> = Movement is severely imprecise in one or more parameters.</li>
+                </ul>
+                <p>If the child achieves a score of <strong>2</strong> in the Auditory or Visual columns, enter a score of <strong>2</strong> in the remaining column(s). If the child does not respond, write NR next to the column and score as 0.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h4>Training Video Reference</h4>
+            <iframe width="250" height="150" src="https://www.youtube.com/embed/56k16NcmJHg?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <!-- <p>Say, <strong>"Let's do some more."</strong></p> -->
+          </div>
+          <div class="col-md-6">
+            <h5 class="text-center">Motor Control Score</h5>
+            <hr>
+            <div class="row">
+              <div class="col"><h5>Auditory</h5></div>
+              <div class="col"><h5>Visual</h5></div>
+              <div class="col"><h5>Tactile</h5></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW EXAMPLE START -->
+        <div ng-repeat="question in sections[5].questions" class="row">
+          <div class="col-md-6">
+            <p class="mt-4"><strong>{{question.number}}. {{question.title}}</strong></p>
+            <ul ng-repeat="choice in question.choices">
+              <li>{{choice}}</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group mt-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text">a.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.auditory" ng-change="updateAuditoryScore()" class="form-control">
+              <div class="input-group-prepend">
+                <span class="input-group-text">b.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.visual" ng-change="updateVisualScore()" class="form-control">
+              <div class="input-group-prepend">
+                <span class="input-group-text">c.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.tactile" ng-change="updateTactileScore()" class="form-control">
+            </div>
+          </div>
+        </div>
+        <!-- ROW EXAMPLE END -->
+
+        <div class="row mt-4">
+          <div class="col-md-6"></div>
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h6 class="text-center">Auditory Score</h6>
+                    <h3 class="text-center">{{sections[5].auditoryScore}}</h3>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-center">Visual Score</h6>
+                    <h3 class="text-center">{{sections[5].visualScore}}</h3>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-center">Tactile Score</h6>
+                    <h3 class="text-center">{{sections[5].tactileScore}}</h3>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col">
+                    <h5 class="text-center">Items _-_ MC Score</h5>
+                    <h3 class="text-center">{{sections[5].motorControlScore}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
+      </div>
+      <!-- SECTION MAIN END -->
+
+
+      <!-- SECTION MAIN START -->
+      <div id="section-mandibular-facial-labial-control" ng-show="currentSection == 6">
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-body">
+                <h4>Directions Title</h4>
+                <h6>Directions Subheading</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aperiam aut modi eligendi et amet inventore placeat cumque accusamus provident, accusantium ipsam, earum! Eum a aperiam id, sed perferendis porro?</p>
+                <p><em>Directions</em></p>
+                <ol type="a">
+                  <li>Auditory Modality: Say, <strong>"Show me how you __________."</strong></li>
+                  <li>Visual Modality: Say, <strong>"Look at me and do what I do."</strong> Model the movement.</li>
+                  <li>Tactile Modality: Say, <strong>"Now I'm going to help you __________."</strong> Guide the child's movements as shown on the <em>Training Videotape</em> while modeling the movement.</li>
+                </ol>
+                <h6>General Motor Control Score Descriptions</h6>
+                <p>The following score descriptions are general. Refer to the <a href=""><em>Examiner's Manual.</em></a> for item-specific score descriptions</p>
+                <ul>
+                  <li><strong>2</strong> = Movement is precise in all parameters.</li>
+                  <li><strong>1</strong> = Movement is partially imprecise in one or more parameters.</li>
+                  <li><strong>0</strong> = Movement is severely imprecise in one or more parameters.</li>
+                </ul>
+                <p>If the child achieves a score of <strong>2</strong> in the Auditory or Visual columns, enter a score of <strong>2</strong> in the remaining column(s). If the child does not respond, write NR next to the column and score as 0.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h4>Training Video Reference</h4>
+            <!-- <iframe width="250" height="150" src="https://www.youtube.com/embed/56k16NcmJHg?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <!-- <p>Say, <strong>"Let's do some more."</strong></p> -->
+          </div>
+          <div class="col-md-6">
+            <h5 class="text-center">Motor Control Score</h5>
+            <hr>
+            <div class="row">
+              <div class="col"><h5>Auditory</h5></div>
+              <div class="col"><h5>Visual</h5></div>
+              <div class="col"><h5>Tactile</h5></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW EXAMPLE START -->
+        <div ng-repeat="question in sections[6].questions" class="row">
+          <div class="col-md-6">
+            <p class="mt-4"><strong>{{question.number}}. {{question.title}}</strong></p>
+            <ul ng-repeat="choice in question.choices">
+              <li>{{choice}}</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group mt-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text">a.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.auditory" ng-change="updateAuditoryScore()" class="form-control">
+              <div class="input-group-prepend">
+                <span class="input-group-text">b.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.visual" ng-change="updateVisualScore()" class="form-control">
+              <div class="input-group-prepend">
+                <span class="input-group-text">c.</span>
+              </div>
+              <input type="number" min="0" max="2" ng-model="question.tactile" ng-change="updateTactileScore()" class="form-control">
+            </div>
+          </div>
+        </div>
+        <!-- ROW EXAMPLE END -->
+
+        <div class="row mt-4">
+          <div class="col-md-6"></div>
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h6 class="text-center">Auditory Score</h6>
+                    <h3 class="text-center">{{sections[6].auditoryScore}}</h3>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-center">Visual Score</h6>
+                    <h3 class="text-center">{{sections[6].visualScore}}</h3>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-center">Tactile Score</h6>
+                    <h3 class="text-center">{{sections[6].tactileScore}}</h3>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col">
+                    <h5 class="text-center">Items _-_ MC Score</h5>
+                    <h3 class="text-center">{{sections[6].motorControlScore}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
+      </div>
+      <!-- SECTION MAIN END -->
 
     </main>
   </div>
